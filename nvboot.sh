@@ -27,7 +27,7 @@ http://chromium.googlesource.com/chromiumos/third_party/u-boot \
 
 
 # Build things now that we've patched it up
-emerge-${BOARD} chromeos-ec chromeos-u-boot chromeos-bootimage
+USE='spring" emerge-${BOARD} chromeos-ec chromeos-u-boot chromeos-bootimage
 
 # Don't leave the altAddr hack there
 git checkout m/master
