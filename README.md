@@ -3,6 +3,12 @@ nv_uboot image for HP Chromebook 11 (daisy_spring)
 
 This is a github clone of the nv_boot-spring.kpart image I built from the Chromiumos source code.  It is suitable for non-verified booting of the HP Chromebook 11.  Basically, it can be used in the same way as nv_boot-snow.kpart from Google.  
 
+Revision 2 added
+--------------------------
+
+I went ahead and rebuilt the nv_uboot image with the [USB Hub Delay Patch](https://chromium-review.googlesource.com/#/c/65542/).  That causes uboot to pause and wait for usb devices to enumerate when booting (fixes slow usb keys I believe).  I was hoping it would address some issues booting from the eMMC where uboot seems to come up too fast and you end up at the uboot prompt.  The jury is still out but if this happens to you, count to 5 and then type "run non_verified_boot" at the prompt and it should try to boot again.  
+
+
 How'd I'd build this anyway?
 ---------------------------
 

@@ -14,20 +14,27 @@ git fetch \
 http://chromium.googlesource.com/chromiumos/third_party/u-boot \
   refs/changes/49/39649/1 && git cherry-pick FETCH_HEAD
 
+# Add the hub power up patch for Spring
+# https://chromium-review.googlesource.com/#/c/65542/
+
+git fetch \
+https://chromium.googlesource.com/chromiumos/third_party/u-boot \
+  refs/changes/42/65542/1 && git cherry-pick FETCH_HEAD
+
 # If you want to apply the two patches for simplefb and simplified
 # environment, then also do these two (commented-out) cherry-picks:
 
-# git fetch \
-#   https://gerrit.chromium.org/gerrit/chromiumos/third_party/u-boot \
-#   refs/changes/58/49358/2 && git cherry-pick FETCH_HEAD
+ git fetch \
+   https://chromium.googlesource.com/chromiumos/third_party/u-boot \
+   refs/changes/58/49358/2 && git cherry-pick FETCH_HEAD
 
-# git fetch \
-#   https://gerrit.chromium.org/gerrit/chromiumos/third_party/u-boot \
-#   refs/changes/48/50848/1 && git cherry-pick FETCH_HEAD
+ git fetch \
+   https://chromium.googlesource.com/chromiumos/third_party/u-boot \
+   refs/changes/48/50848/1 && git cherry-pick FETCH_HEAD
 
 
 # Build things now that we've patched it up
-USE='spring" emerge-${BOARD} chromeos-ec chromeos-u-boot chromeos-bootimage
+USE='spring' emerge-${BOARD} chromeos-ec chromeos-u-boot chromeos-bootimage
 
 # Don't leave the altAddr hack there
 git checkout m/master
