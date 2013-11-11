@@ -6,7 +6,9 @@ This is a github clone of the nv_boot-spring.kpart image I built from the Chromi
 Revision 2 added
 --------------------------
 
-I went ahead and rebuilt the nv_uboot image with the [USB Hub Delay Patch](https://chromium-review.googlesource.com/#/c/65542/).  That causes uboot to pause and wait for usb devices to enumerate when booting (fixes slow usb keys I believe).  I was hoping it would address some issues booting from the eMMC where uboot seems to come up too fast and you end up at the uboot prompt.  The jury is still out but if this happens to you, count to 5 and then type "run non_verified_boot" at the prompt and it should try to boot again.  
+nv_uboot-spring.kpart.gz is now revision 2.  
+
+I went ahead and rebuilt the nv_uboot image with the [USB Hub Delay Patch](https://chromium-review.googlesource.com/#/c/65542/).  That causes uboot to pause and wait for usb devices to enumerate when booting (fixes slow usb keys I believe).  I was hoping it would address some issues booting from the eMMC where uboot seems to come up before the eMMC seems ready and you end up at the uboot prompt.  I'm not sure this improved that but if this happens to you, count to 5 and then type **run non_verified_boot** at the prompt and it should try to boot again.  
 
 
 How'd I'd build this anyway?
@@ -24,6 +26,6 @@ That will get you a repo able to build this firmware.  Carry on through the deve
 
 Finally you'll want to use the [script the referenced on the Google Appendix A page](http://www.chromium.org/chromium-os/u-boot-porting-guide/using-nv-u-boot-on-the-samsung-arm-chromebook#TOC-Installing-nv-U-Boot-chained-U-Boot-method-) to build the kpart.  The nvboot.sh script in this repo is essentially that script, modified to build for daisy_spring.  It also git pulls from googlesource.com so you don't have to mess with gerrit.  It should build the kpart.  
 
-If memory serves, the first time I ran through the build, it failed building one of the ec modules (the embedded controller for the keyboard).  I edited the ebuild for the file and forced EC_BOARD to be "spring" and it built successfully.  If you run into the same issue, it's worth a shot.  
+The USE="spring" flag in the emerge forces the ec controller to be built for the HP Chromebook.   
 
 Good luck!
